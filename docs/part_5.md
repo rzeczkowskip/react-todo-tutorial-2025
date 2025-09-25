@@ -24,22 +24,13 @@ const visibleItems = items.filter((item) => {
 ```jsx
 <div>
   <div>
-    <button
-      onClick={() => setFilter('all')}
-      disabled={filter === 'all'}
-    >
+    <button onClick={() => setFilter('all')} disabled={filter === 'all'}>
       All
     </button>
-    <button
-      onClick={() => setFilter('active')}
-      disabled={filter === 'active'}
-    >
+    <button onClick={() => setFilter('active')} disabled={filter === 'active'}>
       Active
     </button>
-    <button
-      onClick={() => setFilter('done')}
-      disabled={filter === 'done'}
-    >
+    <button onClick={() => setFilter('done')} disabled={filter === 'done'}>
       Completed
     </button>
   </div>

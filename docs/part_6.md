@@ -17,7 +17,6 @@ const TodoItem = ({ item, onToggle }) => {
 };
 
 export default TodoItem;
-
 ```
 
 **TodoList.jsx**:
@@ -38,7 +37,6 @@ const TodoList = ({ items, toggleDone }) => {
 };
 
 export default TodoList;
-
 ```
 
 **Filters.jsx**
