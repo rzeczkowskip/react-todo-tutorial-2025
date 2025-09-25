@@ -71,6 +71,7 @@ const App = () => {
   });
 
   const remainingCount = items.filter((item) => !item.done).length;
+  const completedCount = items.filter((item) => item.done).length;
 
   return (
     <main>
@@ -100,6 +101,7 @@ const App = () => {
           </button>
         </div>
         <div>Pozostało do zrobienia: {remainingCount}</div>
+        <div>Zakończone: {completedCount}</div>
       </div>
 
       <ul>
