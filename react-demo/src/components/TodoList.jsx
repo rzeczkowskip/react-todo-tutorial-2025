@@ -1,8 +1,9 @@
+import styles from './TodoList.module.css';
 import TodoItem from './TodoItem.jsx';
 
 const TodoList = ({ items, toggleDone }) => {
   return (
-    <ul>
+    <ul className={styles.list}>
       {items
         .sort((a, b) => a.done - b.done)
         .map((t) => (

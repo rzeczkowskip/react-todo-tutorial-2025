@@ -1,0 +1,24 @@
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  button {
+    text-decoration: underline;
+    color: red;
+    border: 0;
+    background: none;
+    padding: 0 0.5rem;
+
+    &:hover {
+      background: #eee;
+    }
+  }
+}
