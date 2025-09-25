@@ -8,6 +8,12 @@ const App = () => {
   return (
     <main>
       <h1>Do zrobienia</h1>
+
+      <form>
+        <input placeholder="Co chcesz zrobić?" />
+        <button>Dodaj</button>
+      </form>
+
       <ul>
         {items.map((t) => (
           <li key={t.id}>
