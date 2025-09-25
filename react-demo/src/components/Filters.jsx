@@ -1,25 +1,22 @@
 const Filters = ({ activeFilter, setFilter, remainingCount }) => {
+  const filters = [
+    { key: 'all', label: 'All' },
+    { key: 'active', label: 'Active' },
+    { key: 'done', label: 'Completed' },
+  ];
+
   return (
     <div>
       <div>
-        <button
-          onClick={() => setFilter('all')}
-          disabled={activeFilter === 'all'}
-        >
-          All
-        </button>
-        <button
-          onClick={() => setFilter('active')}
-          disabled={activeFilter === 'active'}
-        >
-          Active
-        </button>
-        <button
-          onClick={() => setFilter('done')}
-          disabled={activeFilter === 'done'}
-        >
-          Completed
-        </button>
+        {filters.map((f) => (
+          <button
+            key={f.key}
+            onClick={() => setFilter(f.key)}
+            disabled={activeFilter === f.key}
+          >
+            {f.label}
+          </button>
+        ))}
       </div>
       <div>Pozostało do zrobienia: {remainingCount}</div>
     </div>
