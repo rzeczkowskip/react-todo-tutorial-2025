@@ -1,10 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const STORAGE_KEY = 'todo-items';
 
 const App = () => {
-  const [items, setItems] = useState([
-    { id: 1, text: 'Nauka React', done: false },
-    { id: 2, text: 'Spacer z psem', done: true },
-  ]);
+  const [items, setItems] = useState(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  // called on every `items` change
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+  }, [items]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
