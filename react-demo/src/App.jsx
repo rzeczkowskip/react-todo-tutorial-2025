@@ -9,17 +9,22 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
+    const task = data.get('task').trim();
+
+    // skip empty values
+    if (!task) {
+      return;
+    }
 
     setItems((prev) => [
-      ...prev, // copy existing items
+      ...prev,
       {
-        id: Date.now(), // generate id by using current time
-        text: data.get('task'),
+        id: Date.now(),
+        text: task,
         done: false,
       },
     ]);
 
-    // clear form inputs
     e.target.reset();
   };
 
