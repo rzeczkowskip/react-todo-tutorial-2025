@@ -51,14 +51,19 @@ const App = () => {
     );
   };
 
+  const clearCompleted = () => {
+    setItems((prev) => prev.filter((item) => !item.done));
+  };
+
   return (
     <main>
       <h1>Do zrobienia</h1>
-
       <form onSubmit={handleSubmit}>
         <input placeholder="Co chcesz zrobić?" name="task" />
         <button>Dodaj</button>
       </form>
+
+      <button onClick={clearCompleted}>Usuń zakończone</button>
 
       <ul>
         {items
