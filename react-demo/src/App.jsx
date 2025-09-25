@@ -17,6 +17,9 @@ const App = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
+  // possible values: 'all' | 'active' | 'done'
+  const [filter, setFilter] = useState('all');
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -55,6 +58,20 @@ const App = () => {
     setItems((prev) => prev.filter((item) => !item.done));
   };
 
+  const visibleItems = items.filter((item) => {
+    if (filter === 'active') {
+      return item.done === false;
+    }
+
+    if (filter === 'done') {
+      return item.done;
+    }
+
+    return true;
+  });
+
+  const remainingCount = items.filter((item) => !item.done).length;
+
   return (
     <main>
       <h1>Do zrobienia</h1>
@@ -62,12 +79,31 @@ const App = () => {
         <input placeholder="Co chcesz zrobić?" name="task" />
         <button>Dodaj</button>
       </form>
-
       <button onClick={clearCompleted}>Usuń zakończone</button>
 
+      <div>
+        <div>
+          <button onClick={() => setFilter('all')} disabled={filter === 'all'}>
+            All
+          </button>
+          <button
+            onClick={() => setFilter('active')}
+            disabled={filter === 'active'}
+          >
+            Active
+          </button>
+          <button
+            onClick={() => setFilter('done')}
+            disabled={filter === 'done'}
+          >
+            Completed
+          </button>
+        </div>
+        <div>Pozostało do zrobienia: {remainingCount}</div>
+      </div>
+
       <ul>
-        {items
-          .slice()
+        {visibleItems
           .sort((a, b) => a.done - b.done) // sort items by done state
           .map((t) => (
             <li key={t.id}>
