@@ -5,19 +5,19 @@
 **TodoItem.jsx**
 
 ```jsx
-const TodoItem = ({ item, onToggle, onRemove }) => {
+const TodoItem = ({ item, onToggle }) => {
   return (
     <li>
       <input type="checkbox" checked={item.done} onChange={onToggle} />
       <span style={{ textDecoration: item.done ? 'line-through' : 'none' }}>
         {item.text}
       </span>
-      {item.done && <button onClick={onRemove}>usuń</button>}
     </li>
   );
 };
 
 export default TodoItem;
+
 ```
 
 **TodoList.jsx**:
@@ -25,24 +25,20 @@ export default TodoItem;
 ```jsx
 import TodoItem from './TodoItem.jsx';
 
-const TodoList = ({ items, toggleDone, removeItem }) => {
+const TodoList = ({ items, toggleDone }) => {
   return (
     <ul>
       {items
         .sort((a, b) => a.done - b.done)
         .map((t) => (
-          <TodoItem
-            key={t.id}
-            item={t}
-            onToggle={() => toggleDone(t.id)}
-            onRemove={() => removeItem(t.id)}
-          />
+          <TodoItem key={t.id} item={t} onToggle={() => toggleDone(t.id)} />
         ))}
     </ul>
   );
 };
 
 export default TodoList;
+
 ```
 
 **Filters.jsx**
