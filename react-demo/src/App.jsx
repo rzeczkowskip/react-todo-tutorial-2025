@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import Filters from './components/Filters.jsx';
+import TodoList from './components/TodoList.jsx';
 
 const STORAGE_KEY = 'todo-items';
 
@@ -82,46 +84,15 @@ const App = () => {
       </form>
       <button onClick={clearCompleted}>Usuń zakończone</button>
 
-      <div>
-        <div>
-          <button onClick={() => setFilter('all')} disabled={filter === 'all'}>
-            All
-          </button>
-          <button
-            onClick={() => setFilter('active')}
-            disabled={filter === 'active'}
-          >
-            Active
-          </button>
-          <button
-            onClick={() => setFilter('done')}
-            disabled={filter === 'done'}
-          >
-            Completed
-          </button>
-        </div>
-        <div>Pozostało do zrobienia: {remainingCount}</div>
-        <div>Zakończone: {completedCount}</div>
-      </div>
+      <Filters
+        activeFilter={filter}
+        remainingCount={remainingCount}
+        setFilter={setFilter}
+      />
 
-      <ul>
-        {visibleItems
-          .sort((a, b) => a.done - b.done) // sort items by done state
-          .map((t) => (
-            <li key={t.id}>
-              <input
-                type="checkbox"
-                checked={t.done}
-                onChange={() => toggleDone(t.id)}
-              />
-              <span
-                style={{ textDecoration: t.done ? 'line-through' : 'none' }}
-              >
-                {t.text}
-              </span>
-            </li>
-          ))}
-      </ul>
+      <div>Zakończone: {completedCount}</div>
+
+      <TodoList items={visibleItems} toggleDone={toggleDone} />
     </main>
   );
 };
