@@ -1,19 +1,23 @@
+import { useState } from 'react';
+
 const App = () => {
-  const items = [
+  const [items, setItems] = useState([
     { id: 1, text: 'Nauka React', done: false },
     { id: 2, text: 'Spacer z psem', done: true },
-    { id: 3, text: 'Szamka', done: false }, // ← new element
-  ];
+  ]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
 
-    items.push({
-      id: items.length + 1,
-      text: data.get('task'),
-      done: false,
-    });
+    setItems((prev) => [
+      ...prev, // copy existing items
+      {
+        id: Date.now(), // generate id by using current time
+        text: data.get('task'),
+        done: false,
+      },
+    ]);
 
     // clear form inputs
     e.target.reset();
