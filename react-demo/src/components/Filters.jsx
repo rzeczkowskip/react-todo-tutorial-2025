@@ -1,3 +1,5 @@
+import styles from './Filters.module.css';
+
 const Filters = ({ activeFilter, setFilter, remainingCount }) => {
   const filters = [
     { key: 'all', label: 'All' },
@@ -6,8 +8,8 @@ const Filters = ({ activeFilter, setFilter, remainingCount }) => {
   ];
 
   return (
-    <div>
-      <div>
+    <div className={styles.filters}>
+      <div className={styles.buttons}>
         {filters.map((f) => (
           <button
             key={f.key}
